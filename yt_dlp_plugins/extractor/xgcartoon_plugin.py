@@ -37,25 +37,19 @@ class LineCartoonVideoIE(InfoExtractor):
         ).strip()
         self.to_screen(f'player_video_id: {player_video_id}')
 
-        resolutions = ['842x480', '1280x720']
-        formats = None
-        for resolution in resolutions:
-            m3u8_url = f'https://xgct-video.vzcdn.net/{player_video_id}/{resolution}/video.m3u8'
-            self.to_screen(f'[info] m3u8_url: {m3u8_url}')
+        m3u8_url = f'https://xgct-video.vzcdn.net/{player_video_id}/playlist.m3u8'
+        self.to_screen(f'[info] m3u8_url: {m3u8_url}')
 
-            formats = self._extract_m3u8_formats(
-                m3u8_url,
-                display_id,
-                'mp4',
-                'm3u8_native',
-                fatal=False,
-                m3u8_id='hls',
-                note='Downloading m3u8 information',
-                errnote='Unable to download m3u8 information'
-            )
-
-        if not resolution:
-            self.raise_no_formats(f'No formats found for {display_id}')
+        formats = self._extract_m3u8_formats(
+            m3u8_url,
+            display_id,
+            'mp4',
+            'm3u8_native',
+            fatal=True,
+            m3u8_id='hls',
+            note='Downloading m3u8 information',
+            errnote='Unable to download m3u8 information'
+        )
 
         return {
             'id': display_id,
