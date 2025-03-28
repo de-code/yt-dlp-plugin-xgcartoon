@@ -28,7 +28,7 @@ class LineCartoonVideoIE(InfoExtractor):
             string=webpage,
             name='title'
         ).strip()
-        self.to_screen('[info] title: {title}')
+        self.to_screen(f'[info] title: {title}')
 
         player_video_id = self._search_regex(
             r'https://pframe\.xgcartoon\.com/player\.htm\?vid=([^&]+)',
@@ -38,7 +38,7 @@ class LineCartoonVideoIE(InfoExtractor):
         self.to_screen(f'player_video_id: {player_video_id}')
 
         m3u8_url = f'https://xgct-video.vzcdn.net/{player_video_id}/842x480/video.m3u8'
-        self.to_screen('[info] m3u8_url: {m3u8_url}')
+        self.to_screen(f'[info] m3u8_url: {m3u8_url}')
 
         formats = self._extract_m3u8_formats(
             m3u8_url,
