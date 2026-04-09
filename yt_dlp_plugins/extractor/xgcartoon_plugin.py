@@ -6,7 +6,7 @@ from yt_dlp.extractor.common import InfoExtractor
 
 class LineCartoonVideoIE(InfoExtractor):
     _VALID_URL: str = (
-        r'https?://www\.lincartoon\.com/video/(?P<playlist_id>[^/]+)/(?P<id>[^/]+)(?:\.html)'  # type: ignore
+        r'https?://www\.(?:lincartoon|xgcartoon|twxgct)\.com/video/(?P<playlist_id>[^/]+)/(?P<id>[^/]+)(?:\.html)'  # type: ignore
     )
 
     def _real_extract(self, url):
